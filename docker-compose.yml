@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: your_root_password
+      MYSQL_DATABASE: your_database
+      MYSQL_USER: your_username
+      MYSQL_PASSWORD: your_password
+    volumes: 
+      - path/to/my.cnf:/etc/mysql/my.cnf
+      - path/to/mariadb.cnf:/etc/mysql/conf.d/mariadb.cnf
+    ports:
+      - "3306:3306"

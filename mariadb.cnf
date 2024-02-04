@@ -1,0 +1,51 @@
+[mariadb]
+
+user                            = mysql             ### 1.2 Use Dedicated Least Privileged Account for MariaDB Daemon/Service (Automated) ###
+
+
+binlog_expire_logs_seconds      = 864000            ### 2.1.5 Point-in-Time Recovery (Automated) ### 
+default_password_lifetime       = 365               ### 2.6 Ensure 'password_lifetime' is Less Than or Equal to '365' (Automated) ###
+tls_version                     = TLSv1.2,TLSv1.3   ### 2.10 Limit Accepted Transport Layer Security (TLS) Versions (Automated) ###
+
+### 2.11 Require Client-Side Certificates (X.509) (Automated) ###
+ssl_cert                        = /etc/my.cnf.d/certificates/server-cert.pem
+ssl_key                         = /etc/my.cnf.d/certificates/server-key.pem
+ssl_ca                          = /etc/my.cnf.d/certificates/ca.pem
+ssl_cipher                      = 'ECDHE-ECDSA-AES128-GCM-SHA256'   ### 2.12 Ensure Only Approved Ciphers are Used (Automated) ###
+
+
+plugin_load_add                 = server_audit  ### 3.9 Ensure 'server_audit_file_path' Has Appropriate Permissions (Automated) ###
+
+
+local-infile                    = 0             ### 4.4 Harden Usage for 'local_infile' on MariaDB Clients (Automated) ###
+skip-grant-tables               = FALSE         ### 4.5 Ensure mariadb is Not Started With 'skip-grant-tables' (Automated) ###
+skip-symbolic-links             = YES           ### 4.6 Ensure Symbolic Links are Disabled (Automated) ###
+### 4.8 Ensure 'sql_mode' Contains 'STRICT_ALL_TABLES' (Automated) ###
+sql_mode                        = "STRICT_ALL_TABLES,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
+
+
+log_error                       = mariadb.err   ### 6.1 Ensure 'log_error' is configured correctly (Automated) ###
+log_warnings                    = 2             ### 6.3 Ensure 'log_warnings' is Set to '2' (Automated) ###
+
+### 6.4 Ensure Audit Logging Is Enabled (Automated) ###
+plugin_load_add = server_audit
+server_audit_logging=ON
+server_audit_events=CONNECT
+
+server_audit                    = FORCE_PLUS_PERMANENT  ### 6.5 Ensure the Audit Plugin Can't be Unloaded (Automated) ###
+encrypt_binlog                  = ON                    ### 6.6 Ensure Binary and Relay Logs are Encrypted (Automated) ###
+
+
+### 7.1 Disable use of the mysql_old_password plugin (Automated) ###
+old_passwords                   = 0
+secure_auth                     = ON
+
+### 7.4 Ensure Password Complexity Policies are in Place (Automated) ###
+plugin_load_add                         = simple_password_check
+simple_password_check                   = FORCE_PLUS_PERMANENT
+simple_password_check_minimal_length    = 14
+plugin_load_add                         = cracklib_password_check
+cracklib_password_check                 = FORCE_PLUS_PERMANENT
+strict_password_validation              = ON
+
+require_secure_transport                = ON           ### 8.1 Ensure 'require_secure_transport' is Set to 'ON' and 'have_ssl' is Set to 'YES' (Automated) ###
