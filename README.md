@@ -1,7 +1,3 @@
-# mariadb.cnf
-Secure mariadb configuration file.
-Implementation with [CIS Docker Benchmark](https://www.cisecurity.org/benchmark/mariadb)
-
 # Warning
 Use this project in a dedicated test environment.
 
@@ -19,6 +15,10 @@ cd mariadb.cnf
 
 ## backup.sh
 Script that create a secure and safe backup.
+```bash
+chmod +x ./backup.sh
+sudo ./backup.sh
+```
 
 ## docker-compose.yml
 Modify to your need the yaml file before.
@@ -41,7 +41,7 @@ sudo ./maradbHardened.sh
 ```
 
 ## my.cnf
-Classic my.cnf file. Required for mariadb.cnf
+Classic my.cnf file. Required for mariadb.cnf.
 ```bash
 sudo cp ./my.cnf /etc/mysql
 ```
