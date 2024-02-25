@@ -3,21 +3,14 @@ Use this project in a dedicated test environment.
 
 # Information
 This project have 2 approachs :
-* Dynamic configuration with the mariadbHardened.sh script.
-* Static configuration with my.cnf and mariadb.cnf files.
+* Declarative with my.cnf and mariadb.cnf files.
+* Imperative with the mariadbHardened.sh script.
 
 # Overview
 ## Installation
 ```bash
 git clone https://github.com/MikeHorn-git/mariadb.cnf.git
 cd mariadb.cnf
-```
-
-## backup.sh
-Script that create a secure and safe backup.
-```bash
-chmod +x ./backup.sh
-sudo ./backup.sh
 ```
 
 ## docker-compose.yml
