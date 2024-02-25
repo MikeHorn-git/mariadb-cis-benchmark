@@ -14,3 +14,6 @@ services:
       - path/to/mariadb.cnf:/etc/mysql/conf.d/mariadb.cnf
     ports:
       - "3306:3306"
+    security_opt:
+      - "no-new-privileges:true"
+    read_only: true
