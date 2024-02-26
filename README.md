@@ -6,46 +6,28 @@ This project have 2 approachs :
 * Declarative with my.cnf and mariadb.cnf files.
 * Imperative with the mariadbHardened.sh script.
 
-# Overview
-## Installation
-```bash
-git clone https://github.com/MikeHorn-git/mariadb.cnf.git
-cd mariadb.cnf
-```
-
-## docker-compose.yml
-Modify to your need the yaml file before.
-```bash
-docker-compose up
-```
-
+# Usage
 ## mariadb.cnf
-Manual steps are required for certains steps. Like creating certification keys and so on.
-Copy the files to your mysql conf.d folder.
+Manual steps are required for certains steps. Copy the files to your mysql conf.d folder.
 ```bash
+sudo cp ./my.cnf /etc/mysql
 sudo cp ./mariadb.cnf /etc/mysql/conf.d/mariadb.cnf
 ```
 
 ## mariadbHardened.sh
-Script that dynamically hardened a running mariadb instance.
 ```bash
 chmod +x ./mariadbHardened.sh
 sudo ./maradbHardened.sh
 ```
 
-## my.cnf
-Classic my.cnf file. Required for mariadb.cnf.
+# Docker
+Modify to your need the yaml file before.
 ```bash
-sudo cp ./my.cnf /etc/mysql
+docker-compose up
 ```
 
 # CIS Implementations
-## backup.sh
-* 2.1.1 Backup Policy in Place
-* 2.1.2 Verify Backups are Good
-* 2.1.3 Secure Backup Credentials
-
-## mariadbHardened.sh
+## Imperative : mariadbHardened.sh
 * 1.2 Use Dedicated Least Privileged Account for MariaDB Daemon/Service
 * 1.3 Disable MariaDB Command History
 * 1.5 Ensure Interactive Login is Disabled
@@ -70,7 +52,7 @@ sudo cp ./my.cnf /etc/mysql
 * 7.4 Ensure Password Complexity Policies are in Place
 * 8.1 Ensure 'require_secure_transport' is Set to 'ON' and 'have_ssl' is Set to 'YES'
 
-## my.cnf
+## Declarative : mariadb.cnf & my.cnf
 * 1.2 Use Dedicated Least Privileged Account for MariaDB Daemon/Service
 * 2.1.5 Point-in-Time Recovery
 * 2.6 Ensure 'password_lifetime' is Less Than or Equal to '365'
