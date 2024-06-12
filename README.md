@@ -1,5 +1,4 @@
-# Warning
-Use this project in a dedicated test environment.
+![image](https://github.com/MikeHorn-git/mariadb-cis-benchmark/assets/123373126/9ff69eba-121e-496b-92af-ff9014cd924e)
 
 # Information
 This project have 2 approachs :
@@ -72,3 +71,6 @@ docker-compose up
 * 7.1 Disable use of the mysql_old_password plugin
 * 7.4 Ensure Password Complexity Policies are in Place
 * 8.1 Ensure 'require_secure_transport' is Set to 'ON' and 'have_ssl' is Set to 'YES'
+
+# Source
+* [CIS MariaDB Benchmarks](https://workbench.cisecurity.org/communities/86)
